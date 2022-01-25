@@ -1,0 +1,120 @@
+doctype html
+head
+  style.
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td,
+    th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+    hr {
+    background-color: #000000;
+    height: 5px;
+    width: 100%;
+    }
+p Warnings:
+  ul
+    each warning in warnings
+      li(style={'color': 'red', 'font-weight': 600})= warning
+
+p= `Wave reason: ${waveReason}`
+hr
+
+h3 Random common question
+table
+  tr
+    th id
+    th title
+    th options
+    th difficulty
+    th type
+    th correlationTags
+    th title vars
+  tr
+    td= randomCommonQuestion && randomCommonQuestion.id ? randomCommonQuestion.id : '-'
+    td= randomCommonQuestion && randomCommonQuestion.title ? randomCommonQuestion.title : '-'
+    td= randomCommonQuestion && randomCommonQuestion.options ? randomCommonQuestion.options.join(', ') : '-'
+    td= randomCommonQuestion && randomCommonQuestion.difficulty ? randomCommonQuestion.difficulty : '-'
+    td= randomCommonQuestion && randomCommonQuestion.type ? randomCommonQuestion.type : '-'
+    td= randomCommonQuestion && randomCommonQuestion.correlationTags ? randomCommonQuestion.correlationTags.join(', ') : '-'
+    td= randomCommonQuestion && randomCommonQuestion.titleVars ? JSON.stringify(randomCommonQuestion.titleVars) : '-'
+h3 Random relevant question
+table
+  tr
+    th id
+    th title
+    th options
+    th difficulty
+    th type
+    th correlationTags
+    th title vars
+  tr
+    td= randomRelevantQuestion && randomRelevantQuestion.id ? randomRelevantQuestion.id : '-'
+    td= randomRelevantQuestion && randomRelevantQuestion.title ? randomRelevantQuestion.title : '-'
+    td= randomRelevantQuestion && randomRelevantQuestion.options ? randomRelevantQuestion.options.join(', ') : '-'
+    td= randomRelevantQuestion && randomRelevantQuestion.difficulty ? randomRelevantQuestion.difficulty : '-'
+    td= randomRelevantQuestion && randomRelevantQuestion.type ? randomRelevantQuestion.type : '-'
+    td= randomRelevantQuestion && randomRelevantQuestion.correlationTags ? randomRelevantQuestion.correlationTags.join(', ') : '-'
+    td= randomRelevantQuestion && randomRelevantQuestion.titleVars ? JSON.stringify(randomRelevantQuestion.titleVars) : '-'
+
+h1 Available questions
+each questObj in questionsByDifficulty
+  h2= questObj.difficulty
+  hr
+  h3 common questions
+  table
+    tr
+      th id
+      th title
+      th options
+      th difficulty
+      th type
+      th correlationTags
+      th title vars
+    each question in questObj.commonQuestions
+      tr
+        td= question ? question.id : '-'
+        td= question ? question.title : '-'
+        td= question ? question.options.join(', ') : '-'
+        td= question ? question.difficulty : '-'
+        td= question ? question.type : '-'
+        td= question ? question.correlationTags.join(', ') : '-'
+        td= question ? JSON.stringify(question.titleVars) : '-'
+  h3 relevant questions
+  table
+    tr
+      th id
+      th title
+      th options
+      th difficulty
+      th type
+      th correlationTags
+      th title vars
+    each question in questObj.relevantQuestions
+      tr
+        td= question ? question.id : '-'
+        td= question ? question.title : '-'
+        td= question ? question.options.join(', ') : '-'
+        td= question ? question.difficulty : '-'
+        td= question ? question.type : '-'
+        td= question ? question.correlationTags.join(', ') : '-'
+        td= question ? JSON.stringify(question.titleVars) : '-'
+hr
+
+p Filtered questions:
+  ul
+    each filteredQuestion in filteredQuestions
+      li= filteredQuestion
+
+p Filtered correlation tags:
+  ul
+    each filteredTag in filteredTags
+      li= filteredTag

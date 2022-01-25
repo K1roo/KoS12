@@ -1,0 +1,59 @@
+doctype html
+head
+  style.
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td,
+    th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+    hr {
+    background-color: #000000;
+    height: 5px;
+    width: 100%;
+    }
+h2 Random trivia question
+table
+  tr
+    th id
+    th title
+    th options
+    th difficulty
+  tr
+    td= randomTrivia && randomTrivia.id ? randomTrivia.id : '-'
+    td= randomTrivia && randomTrivia.title ? randomTrivia.title : '-'
+    td= randomTrivia && randomTrivia.options ? randomTrivia.options.join(', ') : '-'
+    td= randomTrivia && randomTrivia.difficulty ? randomTrivia.difficulty : '-'
+
+h1 Available questions
+each questObj in questionsByDifficulty
+  h2= `Available ${questObj.difficulty} trivias`
+  hr
+  table
+    tr
+      th id
+      th title
+      th options
+      th availableDifficulty
+      th topics
+    each question in questObj.availableTrivias
+      tr
+        td= question.id
+        td= question.title
+        td= question.options.join(', ')
+        td= question.availableDifficulty.join(', ')
+        td= question.topics.join(', ')
+  p= `Filtered ${questObj.difficulty} trivias:`
+    ul
+      each id in questObj.filteredTrivias
+        li= id
+
+hr

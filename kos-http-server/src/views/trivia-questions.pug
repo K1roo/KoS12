@@ -1,0 +1,40 @@
+doctype html
+head
+  style.
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td,
+    th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+    hr {
+    background-color: #000000;
+    height: 5px;
+    width: 100%;
+    }
+
+h1= 'Available ' + game + ' questions'
+table
+  tr
+    th id
+    th title
+    th options
+    th availableDifficulty
+    th topics
+  each question in trivias
+    tr
+      td= question.id
+      td= question.title
+      td= question.options.join(', ')
+      td= question.availableDifficulty.join(', ')
+      td= question.topics.join(', ')
+hr
+
